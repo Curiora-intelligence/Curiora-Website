@@ -6,6 +6,10 @@
 
     min-height: 100vh;
 
+    position: relative;
+
+    overflow: hidden;
+
     display: flex;
 
     flex-direction: column;
@@ -17,8 +21,23 @@
     text-align: center;
 
     padding:
-        140px 24px
-        100px;
+        150px 24px
+        80px;
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
 
 }
 
@@ -27,27 +46,31 @@
 
     margin-bottom: 28px;
 
-    font-size: 14px;
+    color: var(--text-secondary);
+
+    font-size: 13px;
 
     font-weight: 600;
 
-    letter-spacing: .12em;
-
-    color: var(--text-secondary);
+    letter-spacing: .16em;
 
 }
 
 
-.hero h1 {
+.hero-title {
 
-    max-width: 1000px;
+    margin: 0;
+
+    max-width: 1100px;
+
+    color: var(--text);
 
     font-size:
         clamp(64px, 9vw, 128px);
 
-    line-height: .92;
+    line-height: .91;
 
-    letter-spacing: -.055em;
+    letter-spacing: -.065em;
 
     font-weight: 700;
 
@@ -56,15 +79,15 @@
 
 .hero-description {
 
-    max-width: 620px;
+    max-width: 540px;
 
-    margin-top: 36px;
+    margin-top: 34px;
 
     color: var(--text-secondary);
 
     font-size: 20px;
 
-    line-height: 1.55;
+    line-height: 1.5;
 
 }
 
@@ -73,12 +96,244 @@
 
     display: flex;
 
+    align-items: center;
+
     gap: 14px;
 
-    margin-top: 42px;
+    margin-top: 38px;
+
+}
+ 
+/* ========================================
+   CURIORA SIGNATURE
+======================================== */
+
+.curiora-signature {
+
+    position: relative;
+
+    width: 360px;
+    height: 190px;
+
+    margin-top: 72px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    perspective: 900px;
 
 }
 
+
+/* ----------------------------------------
+   Glass surface
+---------------------------------------- */
+.signature-glass {
+    position: relative;
+    z-index: 3;
+
+    width: 190px;
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255,255,255,1) 0%,
+            rgba(235,244,255,.92) 38%,
+            rgba(220,235,255,.65) 100%
+        );
+
+    border: 1px solid rgba(120,170,255,.22);
+
+    backdrop-filter:
+        blur(28px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(28px)
+        saturate(180%);
+
+    box-shadow:
+        0 25px 70px rgba(0, 90, 220, .10),
+        0 8px 25px rgba(0,0,0,.08),
+        inset 0 1px 0 rgba(255,255,255,.95),
+        inset 0 -1px 0 rgba(120,170,255,.12);
+
+    transform-style: preserve-3d;
+
+    will-change: transform;
+
+    transition:
+        transform 180ms cubic-bezier(.2,.8,.2,1),
+        box-shadow 300ms ease;
+}
+
+.signature-word {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+
+    color: rgba(20,25,35,.82);
+
+    transform: translateZ(18px);
+
+    text-shadow:
+        0 1px 1px rgba(255,255,255,.8);
+}
+
+
+/* ----------------------------------------
+   Outer intelligence structure
+---------------------------------------- */
+
+.signature-orbit {
+    position: absolute;
+    z-index: 1;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(0,113,227,.20);
+
+    box-shadow:
+        0 0 25px rgba(0,113,227,.04);
+
+    pointer-events: none;
+}
+
+
+
+.orbit-a {
+    width: 330px;
+    height: 105px;
+
+    transform: rotate(-10deg);
+
+    animation:
+        signatureOrbitA
+        12s
+        ease-in-out
+        infinite;
+}
+
+
+.orbit-b {
+    width: 260px;
+    height: 155px;
+
+    transform: rotate(16deg);
+
+    animation:
+        signatureOrbitB
+        16s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes signatureOrbitA {
+
+    0%, 100% {
+        transform:
+            rotate(-10deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            rotate(-4deg)
+            scale(1.03);
+    }
+
+}
+
+
+@keyframes signatureOrbitB {
+
+    0%, 100% {
+        transform:
+            rotate(16deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            rotate(23deg)
+            scale(.97);
+    }
+
+}
+
+
+.hero-content {
+
+    animation:
+        heroReveal
+        900ms
+        cubic-bezier(.22,.61,.36,1)
+        both;
+
+}
+
+
+
+
+
+@keyframes heroReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes visualReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity: .9;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
 
 /* =========================
    SECTIONS
@@ -208,6 +463,7 @@
         translate(4px, -4px);
 
 }
+
 
 
 /* =========================
@@ -377,6 +633,71 @@
 
         gap: 25px;
 
+    }
+
+}
+@media (max-width: 700px) {
+
+    .hero {
+
+        padding:
+            130px 20px
+            60px;
+
+    }
+
+    .hero-title {
+
+        font-size: 58px;
+
+    }
+
+    .hero-description {
+
+        font-size: 17px;
+
+    }
+
+    .hero-actions {
+
+        flex-direction: column;
+
+        width: 100%;
+
+        max-width: 300px;
+
+    }
+
+    .button {
+
+        width: 100%;
+
+    }
+
+    
+
+}
+@media (max-width: 700px) {
+
+    .curiora-signature {
+        width: 280px;
+        height: 160px;
+        margin-top: 55px;
+    }
+
+    .signature-glass {
+        width: 160px;
+        height: 80px;
+    }
+
+    .orbit-a {
+        width: 270px;
+        height: 90px;
+    }
+
+    .orbit-b {
+        width: 220px;
+        height: 130px;
     }
 
 }

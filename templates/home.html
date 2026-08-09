@@ -2,7 +2,7 @@
 {% block styles %}
 <link
     rel="stylesheet"
-    href="{{ url_for('static', path='css/home.css') }}"
+    href="{{ url_for('static', path='css/home.css') }}?v=1"
 >
 {% endblock %}
 
@@ -10,34 +10,61 @@
 
 <section class="hero">
 
-    <div class="hero-eyebrow">
-    CURIORA
-</div>
+    <div class="hero-content">
 
-<h1>
-    Curiosity Creates<br>
-    Intelligence.
-</h1>
+        <div class="hero-eyebrow">
+            CURIORA
+        </div>
 
-<p class="hero-description">
-    We build intelligent systems for the
-    real world.
-</p>
+        <h1 class="hero-title">
+            Curiosity Creates<br>
+            Intelligence.
+        </h1>
 
-<div class="hero-actions">
+        <p class="hero-description">
+            We build intelligent systems
+            for the real world.
+        </p>
 
-    <a href="#products" class="button button-primary">
-        Explore our work
-    </a>
+        <div class="hero-actions">
 
-    <a href="/research" class="button button-secondary">
-        Research →
-    </a>
+            <a
+                href="#products"
+                class="button button-primary"
+            >
+                Explore our work
+            </a>
+
+            <a
+                href="/research"
+                class="button button-secondary"
+            >
+                Research →
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Curiora intelligence visual -->
+
+    <div class="curiora-signature" id="curioraSignature">
+
+    <div class="signature-orbit orbit-a"></div>
+    <div class="signature-orbit orbit-b"></div>
+
+    <div class="signature-glass">
+
+        <span class="signature-word">
+            CURIO
+        </span>
+
+    </div>
 
 </div>
 
 </section>
-
 
 <section id="products" class="section products-section">
 
@@ -120,5 +147,101 @@
     </p>
 
 </section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const signature =
+        document.getElementById("curioraSignature");
+
+    if (!signature) {
+        console.error("Curiora Signature not found.");
+        return;
+    }
+
+    const glass =
+        signature.querySelector(".signature-glass");
+
+    if (!glass) {
+        console.error("Curiora Glass not found.");
+        return;
+    }
+
+
+    signature.addEventListener("pointermove", (event) => {
+
+        const rect =
+            signature.getBoundingClientRect();
+
+        const x =
+            event.clientX - rect.left;
+
+        const y =
+            event.clientY - rect.top;
+
+
+        const percentX =
+            (x / rect.width) * 100;
+
+        const percentY =
+            (y / rect.height) * 100;
+
+
+        const centerX =
+            rect.width / 2;
+
+        const centerY =
+            rect.height / 2;
+
+        const rotateY =
+            ((x - centerX) / centerX) * 8;
+
+        const rotateX =
+            ((centerY - y) / centerY) * 6;
+
+
+        glass.style.setProperty(
+            "--mouse-x",
+            `${percentX}%`
+        );
+
+        glass.style.setProperty(
+            "--mouse-y",
+            `${percentY}%`
+        );
+
+
+        glass.style.transform =
+            `perspective(700px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            translateZ(8px)`;
+    });
+
+
+    signature.addEventListener("pointerleave", () => {
+
+        glass.style.setProperty(
+            "--mouse-x",
+            "50%"
+        );
+
+        glass.style.setProperty(
+            "--mouse-y",
+            "50%"
+        );
+
+        glass.style.transform =
+            "perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0)";
+
+    });
+
+});
+
+</script>
 
 {% endblock %}
