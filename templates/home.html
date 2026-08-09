@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (prefersReducedMotion) {
         return;
     }
-    
+
     signature.addEventListener("pointermove", (event) => {
 
         const rect =
@@ -245,6 +245,36 @@ document.addEventListener("DOMContentLoaded", () => {
             "perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0)";
 
     });
+
+    const productRows =
+    document.querySelectorAll(".product-row");
+
+const productObserver =
+    new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach((entry) => {
+
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                entry.target.classList.add("is-visible");
+
+                observer.unobserve(entry.target);
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+
+productRows.forEach((row) => {
+    productObserver.observe(row);
+});
 
 });
 

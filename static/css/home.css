@@ -498,6 +498,33 @@
         scaleX(1);
 }
 
+/* =========================
+   PRODUCT REVEAL
+========================= */
+
+.product-row {
+    opacity: 0;
+    transform: translateY(24px);
+
+    transition:
+        opacity 700ms cubic-bezier(.22,.61,.36,1),
+        transform 700ms cubic-bezier(.22,.61,.36,1),
+        padding 350ms cubic-bezier(.22,.61,.36,1);
+}
+
+.product-row.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-row:nth-child(2) {
+    transition-delay: 80ms;
+}
+
+.product-row:nth-child(3) {
+    transition-delay: 160ms;
+}
+
 
 /* =========================
    STATEMENT
@@ -699,4 +726,26 @@
         flex-direction: column;
         gap: 25px;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero-content,
+    .signature-glass,
+    .orbit-a,
+    .orbit-b,
+    .product-row {
+        animation: none;
+        transition: none;
+        transform: none;
+    }
+
+    .product-row {
+        opacity: 1;
+    }
+
 }
