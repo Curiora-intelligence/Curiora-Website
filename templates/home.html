@@ -1,0 +1,124 @@
+{% extends "layouts/base.html" %}
+{% block styles %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', path='css/home.css') }}"
+>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-eyebrow">
+    CURIORA
+</div>
+
+<h1>
+    Curiosity Creates<br>
+    Intelligence.
+</h1>
+
+<p class="hero-description">
+    We build intelligent systems for the
+    real world.
+</p>
+
+<div class="hero-actions">
+
+    <a href="#products" class="button button-primary">
+        Explore our work
+    </a>
+
+    <a href="/research" class="button button-secondary">
+        Research →
+    </a>
+
+</div>
+
+</section>
+
+
+<section id="products" class="section products-section">
+
+    <div class="section-heading">
+
+        <span class="eyebrow">
+            The ecosystem
+        </span>
+
+        <h2>
+            Built to explore<br>
+            what comes next.
+        </h2>
+
+    </div>
+
+
+    <div class="product-list">
+
+        <a href="#" class="product-row">
+
+            <div>
+                <span class="product-label">
+                    Curiora Campus
+                </span>
+
+                <h3>
+                    Intelligence for modern universities.
+                </h3>
+            </div>
+
+            <span class="product-arrow">↗</span>
+
+        </a>
+
+
+        <a href="#" class="product-row">
+
+            <div>
+                <span class="product-label">
+                    Curiora Pay
+                </span>
+
+                <h3>
+                    A simpler way to move through the digital world.
+                </h3>
+            </div>
+
+            <span class="product-arrow">↗</span>
+
+        </a>
+
+
+        <a href="#" class="product-row">
+
+            <div>
+                <span class="product-label">
+                    Curiora Research
+                </span>
+
+                <h3>
+                    Exploring the boundaries of intelligent systems.
+                </h3>
+            </div>
+
+            <span class="product-arrow">↗</span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="statement-section">
+
+    <p>
+        We don't build intelligence for the sake of technology.
+        We build it to understand, create, and solve.
+    </p>
+
+</section>
+
+{% endblock %}

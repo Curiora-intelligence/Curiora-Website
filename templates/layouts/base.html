@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ title }}</title>
+
+
+    <!-- Curiora Design System -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/design-system.css') }}"
+    >
+
+    <!-- Shared Components -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/components.css') }}"
+    >
+
+
+    {% block styles %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+    {% include "components/navbar.html" %}
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    {% include "components/footer.html" %}
+
+
+    <script
+        src="{{ url_for('static', path='js/app.js') }}"
+    ></script>
+
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+
+</html>
